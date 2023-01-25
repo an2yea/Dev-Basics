@@ -10,6 +10,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded());
 
+//middleware 1
+app.use(function(req,res,next){
+    console.log("Middleware1 called");
+    next();
+})
 var contactList = [
     {
         name: "Ananya",
