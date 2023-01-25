@@ -8,6 +8,8 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.urlencoded());
+
 var contactList = [
     {
         name: "Ananya",
@@ -21,7 +23,14 @@ var contactList = [
 
 
 app.post('/create-contact', function(req,res){
-    return res.redirect('/practice');
+    contactList.push({
+        name: req.body.name,
+        phone: req.body.phone
+    })   
+    
+    contactList.push(req);
+    // return res.redirect('/');
+    return res.redirect('back');
 })
 app.get('/practice', function(req,res){
     // res.send("Server running");
