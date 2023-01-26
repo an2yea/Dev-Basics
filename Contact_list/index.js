@@ -9,12 +9,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded());
+app.use(express.static('assets'));
 
-//middleware 1
-app.use(function(req,res,next){
-    console.log("Middleware1 called");
-    next();
-})
 var contactList = [
     {
         name: "Ananya",
@@ -49,6 +45,18 @@ app.get('/', function(req,res){
     })
 })
 
+app.get('/delete-contact/', function(req,res){
+    let phone = req.query.phone;
+
+    let contactIndex = contactList.findIndex(contact => contact.phone == phone);
+
+    if(contactIndex != -1)
+    {
+        contactList.splice(contactIndex,1);   
+    }
+
+    return res.redirect('back')
+;})
 
 app.listen(port, function(err){
     if(err){

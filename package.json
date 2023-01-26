@@ -1,0 +1,19 @@
+{
+  "name": "mern---r",
+  "version": "1.0.0",
+  "description": "Basic Projects MERN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/an2yea/Dev-Basics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/an2yea/Dev-Basics/issues"
+  },
+  "homepage": "https://github.com/an2yea/Dev-Basics#readme"
+}
