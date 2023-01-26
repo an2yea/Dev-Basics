@@ -44,7 +44,7 @@ app.get('/practice', function(req,res){
 })
 
 app.get('/', function(req,res){
-
+    //What does find change that couldn't be done simply sending the db?
     Contact.find({}, function(err, contacts){
         if(err){
             console.log("Error finding contacts ${err}");
@@ -55,46 +55,19 @@ app.get('/', function(req,res){
             contact_list: contacts
         })
     })
-    // return res.render('index',{
-    //     title: "Contact List", 
-    //     contact_list: Contact.map(p=> p.toJSON())
-    // })
-    // let contacts = Contact.find({});
-    // console.log(typeof(contacts));
-    // console.log(typeof(contactList))
-
-    
-    // if(contacts.size() != 0)
-    // {
-    //     for( let i in contacts){
-    //         console.log(i);
-    //     }
-    //     return res.render('index',{
-    //         title: 'Contact List',
-    //         contact_list: contacts
-    //     })
-    // }
-
-    // res.redirect('back');
-    
-    // console.log(req.socket.remoteAddress);
-    // return res.render('index', {
-    //     title : 'Contact List', 
-    //     contact_list: contactList
-    // })
 })
 
 app.get('/delete-contact/', function(req,res){
-    let phone = req.query.phone;
 
-    let contactIndex = contactList.findIndex(contact => contact.phone == phone);
-
-    if(contactIndex != -1)
-    {
-        contactList.splice(contactIndex,1);   
-    }
-
-    return res.redirect('back')
+    let id = req.query.id;
+    console.log(id);
+    Contact.findByIdAndDelete(id, function(err){
+        if(err){
+            console.log("Error in deleting contact");
+            return;
+        }
+        return res.redirect('/');
+    });
 ;})
 
 app.listen(port, function(err){
