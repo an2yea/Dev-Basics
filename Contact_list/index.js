@@ -68,7 +68,9 @@ app.get('/delete-contact/', function(req,res){
         }
         return res.redirect('/');
     });
-;})
+    //Don't reset res after you have sent headers -> gives error although the condition is never reached
+    //return res.redirect('back'); //Don't return here
+})
 
 app.listen(port, function(err){
     if(err){
